@@ -39,16 +39,32 @@ if (context) {
 
       // Draw our game map.
       gameMap.map((row, rowIndex) =>
-        row.map((cellSymbol, cellIndex) =>
-          cellSymbol === "-"
-            ? new Boundary({
-                position: {
-                  x: Boundary.width * cellIndex,
-                  y: Boundary.height * rowIndex,
-                },
-              }).draw(context)
-            : undefined
-        )
+        row.map((cellSymbol, cellIndex) => {
+          let newBoundary;
+          if (cellSymbol === "-") {
+            newBoundary = new Boundary({
+              position: {
+                x: Boundary.width * cellIndex,
+                y: Boundary.height * rowIndex,
+              },
+            });
+            newBoundary.draw(context);
+
+            if (
+              player.position.y - player.radius + player.velocity.y <=
+                newBoundary.position.y + newBoundary.height &&
+              player.position.x + player.radius + player.velocity.x >=
+                newBoundary.position.x &&
+              player.position.y + player.radius + player.velocity.y >=
+                newBoundary.position.y &&
+              player.position.x - player.radius + player.velocity.x <=
+                newBoundary.position.x + newBoundary.width
+            ) {
+              player.velocity.y = 0;
+              player.velocity.x = 0;
+            }
+          }
+        })
       );
 
       // Add our Player
