@@ -26,4 +26,10 @@ export class Player {
     context.fill();
     context.closePath();
   }
+
+  update(context: CanvasRenderingContext2D) {
+    this.draw(context);
+    this.position.x += this.velocity.x;
+    this.position.y += this.velocity.y;
+  }
 }
