@@ -1,4 +1,5 @@
 import { Boundary } from "./boundary";
+import { circleCollidesWithRectangle } from "./circle-collides-with-rectangle";
 import { handelKeyup } from "./handel-keyup";
 import { handleKeydown, keys, lastKey } from "./handle-keydown";
 import { Player } from "./player";
@@ -50,15 +51,12 @@ if (context) {
             });
             newBoundary.draw(context);
 
+            // Collision detection
             if (
-              player.position.y - player.radius + player.velocity.y <=
-                newBoundary.position.y + newBoundary.height &&
-              player.position.x + player.radius + player.velocity.x >=
-                newBoundary.position.x &&
-              player.position.y + player.radius + player.velocity.y >=
-                newBoundary.position.y &&
-              player.position.x - player.radius + player.velocity.x <=
-                newBoundary.position.x + newBoundary.width
+              circleCollidesWithRectangle({
+                circle: player,
+                rectangle: newBoundary,
+              })
             ) {
               player.velocity.y = 0;
               player.velocity.x = 0;
