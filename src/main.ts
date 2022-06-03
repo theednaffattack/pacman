@@ -1,6 +1,6 @@
 import { Boundary } from "./boundary";
 import { handelKeyup } from "./handel-keyup";
-import { handleKeydown, keys } from "./handle-keydown";
+import { handleKeydown, keys, lastKey } from "./handle-keydown";
 import { Player } from "./player";
 
 export const canvas = document.querySelector<HTMLCanvasElement>("canvas")!;
@@ -60,13 +60,25 @@ if (context) {
       player.velocity.y = 0;
       player.velocity.x = 0;
 
-      if (keys.w.pressed || keys.ArrowUp.pressed) {
+      if (
+        (keys.w.pressed && lastKey === "w") ||
+        (keys.ArrowUp.pressed && lastKey === "ArrowUp")
+      ) {
         player.velocity.y = -5;
-      } else if (keys.s.pressed || keys.ArrowDown.pressed) {
+      } else if (
+        (keys.s.pressed && lastKey === "s") ||
+        (keys.ArrowDown.pressed && lastKey === "ArrowDown")
+      ) {
         player.velocity.y = 5;
-      } else if (keys.a.pressed || keys.ArrowLeft.pressed) {
+      } else if (
+        (keys.a.pressed && lastKey === "a") ||
+        (keys.ArrowLeft.pressed && lastKey === "ArrowLeft")
+      ) {
         player.velocity.x = -5;
-      } else if (keys.d.pressed || keys.ArrowRight.pressed) {
+      } else if (
+        (keys.d.pressed && lastKey === "d") ||
+        (keys.ArrowRight.pressed && lastKey === "ArrowRight")
+      ) {
         player.velocity.x = 5;
       }
     }
