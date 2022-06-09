@@ -73,9 +73,6 @@ export function handleKeydown({ key }: KeyboardEvent, player: Player) {
         keys.d.pressed = true;
         lastKey = "d";
         break;
-
-      default:
-        break;
     }
   }
 }
