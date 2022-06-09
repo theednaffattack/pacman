@@ -81,7 +81,7 @@ if (context) {
                     x: Boundary.width * cellIndex,
                     y: Boundary.height * rowIndex,
                   },
-                  image: createImage("./img/pipeHorizontal.png"),
+                  image: createImage("../images/pipeHorizontal.png"),
                 })
               );
               break;
@@ -92,7 +92,7 @@ if (context) {
                     x: Boundary.width * cellIndex,
                     y: Boundary.height * rowIndex,
                   },
-                  image: createImage("./img/pipeVertical.png"),
+                  image: createImage("../images/pipeVertical.png"),
                 })
               );
               break;
@@ -103,7 +103,7 @@ if (context) {
                     x: Boundary.width * cellIndex,
                     y: Boundary.height * rowIndex,
                   },
-                  image: createImage("./img/pipeCorner1.png"),
+                  image: createImage("../images/pipeCorner1.png"),
                 })
               );
               break;
@@ -114,7 +114,7 @@ if (context) {
                     x: Boundary.width * cellIndex,
                     y: Boundary.height * rowIndex,
                   },
-                  image: createImage("./img/pipeCorner2.png"),
+                  image: createImage("../images/pipeCorner2.png"),
                 })
               );
               break;
@@ -125,7 +125,7 @@ if (context) {
                     x: Boundary.width * cellIndex,
                     y: Boundary.height * rowIndex,
                   },
-                  image: createImage("./img/pipeCorner3.png"),
+                  image: createImage("../images/pipeCorner3.png"),
                 })
               );
               break;
@@ -136,7 +136,7 @@ if (context) {
                     x: Boundary.width * cellIndex,
                     y: Boundary.height * rowIndex,
                   },
-                  image: createImage("./img/pipeCorner4.png"),
+                  image: createImage("../images/pipeCorner4.png"),
                 })
               );
               break;
@@ -147,7 +147,7 @@ if (context) {
                     x: Boundary.width * cellIndex,
                     y: Boundary.height * rowIndex,
                   },
-                  image: createImage("./img/block.png"),
+                  image: createImage("../images/block.png"),
                 })
               );
               break;
@@ -158,7 +158,7 @@ if (context) {
                     x: cellIndex * Boundary.width,
                     y: rowIndex * Boundary.height,
                   },
-                  image: createImage("./img/capLeft.png"),
+                  image: createImage("../images/capLeft.png"),
                 })
               );
               break;
@@ -169,7 +169,7 @@ if (context) {
                     x: cellIndex * Boundary.width,
                     y: rowIndex * Boundary.height,
                   },
-                  image: createImage("./img/capRight.png"),
+                  image: createImage("../images/capRight.png"),
                 })
               );
               break;
@@ -180,7 +180,7 @@ if (context) {
                     x: cellIndex * Boundary.width,
                     y: rowIndex * Boundary.height,
                   },
-                  image: createImage("./img/capBottom.png"),
+                  image: createImage("../images/capBottom.png"),
                 })
               );
               break;
@@ -191,7 +191,7 @@ if (context) {
                     x: cellIndex * Boundary.width,
                     y: rowIndex * Boundary.height,
                   },
-                  image: createImage("./img/capTop.png"),
+                  image: createImage("../images/capTop.png"),
                 })
               );
               break;
@@ -202,7 +202,7 @@ if (context) {
                     x: cellIndex * Boundary.width,
                     y: rowIndex * Boundary.height,
                   },
-                  image: createImage("./img/pipeCross.png"),
+                  image: createImage("../images/pipeCross.png"),
                 })
               );
               break;
@@ -214,7 +214,7 @@ if (context) {
                     y: rowIndex * Boundary.height,
                   },
                   color: "blue",
-                  image: createImage("./img/pipeConnectorTop.png"),
+                  image: createImage("../images/pipeConnectorTop.png"),
                 })
               );
               break;
@@ -226,7 +226,7 @@ if (context) {
                     y: rowIndex * Boundary.height,
                   },
                   color: "blue",
-                  image: createImage("./img/pipeConnectorRight.png"),
+                  image: createImage("../images/pipeConnectorRight.png"),
                 })
               );
               break;
@@ -238,7 +238,7 @@ if (context) {
                     y: rowIndex * Boundary.height,
                   },
                   color: "blue",
-                  image: createImage("./img/pipeConnectorBottom.png"),
+                  image: createImage("../images/pipeConnectorBottom.png"),
                 })
               );
               break;
@@ -249,7 +249,7 @@ if (context) {
                     x: cellIndex * Boundary.width,
                     y: rowIndex * Boundary.height,
                   },
-                  image: createImage("./img/pipeConnectorLeft.png"),
+                  image: createImage("../images/pipeConnectorLeft.png"),
                 })
               );
               break;
