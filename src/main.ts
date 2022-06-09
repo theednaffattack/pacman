@@ -11,7 +11,9 @@ const context = canvas.getContext("2d");
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 
-const gameMap = [
+type GameMapEntities = ("-" | " ")[];
+
+const gameMap: GameMapEntities[] = [
   ["-", "-", "-", "-", "-", "-", "-", "-"],
   ["-", " ", " ", " ", " ", " ", " ", "-"],
   ["-", " ", " ", " ", " ", " ", " ", "-"],
@@ -38,32 +40,48 @@ if (context) {
       context.fillStyle = "black";
       context.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Draw our game map.
-      gameMap.map((row, rowIndex) =>
-        row.map((cellSymbol, cellIndex) => {
-          let newBoundary;
-          if (cellSymbol === "-") {
-            newBoundary = new Boundary({
-              position: {
-                x: Boundary.width * cellIndex,
-                y: Boundary.height * rowIndex,
-              },
-            });
-            newBoundary.draw(context);
+      let boundaries: Boundary[] = [];
 
-            // Collision detection
-            if (
-              circleCollidesWithRectangle({
-                circle: player,
-                rectangle: newBoundary,
-              })
-            ) {
-              player.velocity.y = 0;
-              player.velocity.x = 0;
-            }
+      // Redo creation of game map.
+      gameMap.forEach((row, rowIndex) => {
+        row.forEach((symbol, cellIndex) => {
+          switch (symbol) {
+            case "-":
+              boundaries.push(
+                new Boundary({
+                  position: {
+                    x: Boundary.width * cellIndex,
+                    y: Boundary.height * rowIndex,
+                  },
+                })
+              );
+              break;
+            // case " ":
+            //   boundaries.push(
+            //     new Boundary({
+            //       position: {
+            //         x: Boundary.width * cellIndex,
+            //         y: Boundary.height * cellIndex,
+            //       },
+            //     })
+            //   );
+            default:
+              break;
           }
-        })
-      );
+        });
+      });
+
+      // Draw our game map.
+      boundaries.forEach((boundary) => {
+        boundary.draw(context);
+
+        if (
+          circleCollidesWithRectangle({ circle: player, rectangle: boundary })
+        ) {
+          player.velocity.x = 0;
+          player.velocity.y = 0;
+        }
+      });
 
       // Add our Player
       // player.draw(context);
@@ -74,26 +92,130 @@ if (context) {
       player.velocity.y = 0;
       player.velocity.x = 0;
 
+      // Handle moving player here rather than
+      // our key handler to prevent jankiness
       if (
         (keys.w.pressed && lastKey === "w") ||
         (keys.ArrowUp.pressed && lastKey === "ArrowUp")
       ) {
-        player.velocity.y = -5;
+        // Predict whether the player will collide
+        // before the player actually does
+        for (let index = 0; index < boundaries.length; index++) {
+          const boundary = boundaries[index];
+          // do stuff
+          // boundaries.forEach((boundary) => {
+          if (
+            circleCollidesWithRectangle({
+              circle: {
+                ...player,
+                draw: player.draw,
+                update: player.update,
+                velocity: {
+                  x: 0,
+                  y: -5,
+                },
+              },
+              rectangle: boundary,
+            })
+          ) {
+            console.log("STOPPING UP", boundary);
+            player.velocity.y = 0;
+            break;
+          } else {
+            console.log("HEADING UP");
+            player.velocity.y = -5;
+          }
+          // });
+        }
       } else if (
         (keys.s.pressed && lastKey === "s") ||
         (keys.ArrowDown.pressed && lastKey === "ArrowDown")
       ) {
-        player.velocity.y = 5;
+        for (let index = 0; index < boundaries.length; index++) {
+          const boundary = boundaries[index];
+          // do stuff
+          // boundaries.forEach((boundary) => {
+          if (
+            circleCollidesWithRectangle({
+              circle: {
+                ...player,
+                draw: player.draw,
+                update: player.update,
+                velocity: {
+                  x: 0,
+                  y: 5,
+                },
+              },
+              rectangle: boundary,
+            })
+          ) {
+            console.log("STOPPING UP", boundary);
+            player.velocity.y = 0;
+            break;
+          } else {
+            console.log("HEADING UP");
+            player.velocity.y = 5;
+          }
+          // });
+        }
       } else if (
         (keys.a.pressed && lastKey === "a") ||
         (keys.ArrowLeft.pressed && lastKey === "ArrowLeft")
       ) {
-        player.velocity.x = -5;
+        for (let index = 0; index < boundaries.length; index++) {
+          const boundary = boundaries[index];
+          // do stuff
+          // boundaries.forEach((boundary) => {
+          if (
+            circleCollidesWithRectangle({
+              circle: {
+                ...player,
+                draw: player.draw,
+                update: player.update,
+                velocity: {
+                  x: -5,
+                  y: 0,
+                },
+              },
+              rectangle: boundary,
+            })
+          ) {
+            player.velocity.x = 0;
+            break;
+          } else {
+            player.velocity.x = -5;
+          }
+          // });
+        }
       } else if (
         (keys.d.pressed && lastKey === "d") ||
         (keys.ArrowRight.pressed && lastKey === "ArrowRight")
       ) {
-        player.velocity.x = 5;
+        for (let index = 0; index < boundaries.length; index++) {
+          const boundary = boundaries[index];
+          // do stuff
+          // boundaries.forEach((boundary) => {
+          if (
+            circleCollidesWithRectangle({
+              circle: {
+                ...player,
+                draw: player.draw,
+                update: player.update,
+                velocity: {
+                  x: 5,
+                  y: 0,
+                },
+              },
+              rectangle: boundary,
+            })
+          ) {
+            player.velocity.x = 0;
+            break;
+          } else {
+            player.velocity.x = 5;
+          }
+          // });
+        }
       }
     }
   }
