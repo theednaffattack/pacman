@@ -267,6 +267,11 @@ if (context) {
         });
       });
 
+      // Draw pellets
+      pellets.forEach((pellet) => {
+        pellet.draw(context);
+      });
+
       // Draw our game map.
       boundaries.forEach((boundary) => {
         boundary.draw(context);
@@ -314,11 +319,9 @@ if (context) {
               rectangle: boundary,
             })
           ) {
-            console.log("STOPPING UP", boundary);
             player.velocity.y = 0;
             break;
           } else {
-            console.log("HEADING UP");
             player.velocity.y = -5;
           }
           // });
@@ -345,11 +348,9 @@ if (context) {
               rectangle: boundary,
             })
           ) {
-            console.log("STOPPING UP", boundary);
             player.velocity.y = 0;
             break;
           } else {
-            console.log("HEADING UP");
             player.velocity.y = 5;
           }
           // });
