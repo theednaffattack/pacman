@@ -37,8 +37,6 @@ export function handelKeyup({ key }: KeyboardEvent, player: Player) {
       case "d":
         keys.d.pressed = false;
         break;
-      default:
-        break;
     }
   }
 }

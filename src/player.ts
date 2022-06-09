@@ -16,7 +16,7 @@ export class Player {
     this.width = 40;
     this.height = 40;
     this.velocity = velocity;
-    this.radius = 10;
+    this.radius = 15;
   }
 
   draw(context: CanvasRenderingContext2D) {
